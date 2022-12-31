@@ -1,2 +1,4 @@
 rootProject.name = 'IdaCarnation'
+include 'User-Domain'
+include 'User-Spi'
 

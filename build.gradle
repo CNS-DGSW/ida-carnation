@@ -1,19 +1,42 @@
-plugins {
-    id 'java'
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    ext {
+        spi_implementations = ['org.springframework.boot:spring-boot-starter-data-jpa']
+        spi_annotations = ['org.springframework.boot:spring-boot-configuration-processor']
+        spi_test = ['org.springframework.boot:spring-boot-starter-test']
+    }
+
 }
 
-group 'com.dgsw.cns'
-version '1.0-SNAPSHOT'
+allprojects {
+    group 'com.dgsw.cns'
+    version '1.0-SNAPSHOT'
 
-repositories {
-    mavenCentral()
-}
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    apply plugin: 'java-library'
 
-dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
-}
+    sourceCompatibility = '17'
 
-test {
-    useJUnitPlatform()
+    configurations {
+        compileOnly {
+            extendsFrom annotationProcessor
+        }
+    }
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+    }
+
+    tasks.named('test') {
+        useJUnitPlatform()
+    }
 }
