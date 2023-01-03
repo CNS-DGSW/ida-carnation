@@ -4,8 +4,12 @@ buildscript {
     }
 
     ext {
+        api_implementations = ['org.springframework.boot:spring-boot-starter-web', 'org.springframework.boot:spring-boot-starter-security']
+        api_annotations = ['org.springframework.boot:spring-boot-configuration-processor']
+        api_test = []
+
         spi_implementations = ['org.springframework.boot:spring-boot-starter-data-jpa']
-        spi_annotations = ['org.springframework.boot:spring-boot-configuration-processor']
+        spi_annotations = []
         spi_test = ['org.springframework.boot:spring-boot-starter-test']
     }
 
@@ -32,8 +36,8 @@ allprojects {
     }
 
     dependencies {
-        compileOnly 'org.projectlombok:lombok'
-        annotationProcessor 'org.projectlombok:lombok'
+        compileOnly 'org.projectlombok:lombok:1.18.20'
+        annotationProcessor 'org.projectlombok:lombok:1.18.20'
     }
 
     tasks.named('test') {

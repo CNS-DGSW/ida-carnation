@@ -10,6 +10,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/Http-Api" />
             <option value="$PROJECT_DIR$/User-Domain" />
             <option value="$PROJECT_DIR$/User-Spi" />
           </set>

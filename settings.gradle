@@ -1,4 +1,5 @@
 rootProject.name = 'IdaCarnation'
 include 'User-Domain'
 include 'User-Spi'
+include 'Http-Api'
 
