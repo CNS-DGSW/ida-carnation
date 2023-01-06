@@ -15,6 +15,11 @@ buildscript {
 
 }
 
+
+plugins {
+    id "org.sonarqube" version "3.5.0.2730"
+}
+
 allprojects {
     group 'com.dgsw.cns'
     version '1.0-SNAPSHOT'
@@ -42,5 +47,13 @@ allprojects {
 
     tasks.named('test') {
         useJUnitPlatform()
+    }
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "CNS-DGSW_ida-carnation"
+        property "sonar.organization", "cns-dgsw"
+        property "sonar.host.url", "https://sonarcloud.io"
     }
 }
