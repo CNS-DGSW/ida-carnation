@@ -10,9 +10,7 @@ import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.Arrays;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Log4j2
 @Configuration
@@ -37,29 +35,28 @@ public class ConfigLoader implements BeanFactoryPostProcessor {
         return null;
     }
 
+    private void registerBean(DefaultListableBeanFactory beanRegistry, Class<?> componentClass) {
+        BeanDefinitionBuilder builder = BeanDefinitionBuilder.rootBeanDefinition(componentClass);
+        Class<?>[] params = componentClass.getConstructors()[0].getParameterTypes();
+
+        for(Class<?> beanType: params) {
+            String qualifiedBeanName = getQualifiedBeanName(beanRegistry, beanType);
+            if(qualifiedBeanName == null) continue;
+
+            builder.addConstructorArgReference(qualifiedBeanName);
+            builder.addDependsOn(qualifiedBeanName);
+        }
+
+        beanRegistry.registerBeanDefinition(getBeanNameOf(componentClass), builder.getBeanDefinition());
+    }
+
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
-        System.out.println("Bean definition");
-        System.out.println(Arrays.stream(beanFactory.getBeanDefinitionNames()).filter(it -> !it.contains(".")).collect(Collectors.toList()));
-
         Set<Class<?>> useCaseClasses = reflections.getTypesAnnotatedWith(UseCase.class);
-
         DefaultListableBeanFactory beanRegistry = (DefaultListableBeanFactory) beanFactory;
 
-        for (Class<?> component : useCaseClasses) {
-            BeanDefinitionBuilder builder = BeanDefinitionBuilder.rootBeanDefinition(component);
-            Class<?>[] params = component.getConstructors()[0].getParameterTypes();
-            for(Class<?> beanType: params) {
-                String qualifiedBeanName = getQualifiedBeanName(beanRegistry, beanType);
-                if(qualifiedBeanName == null) continue;
-
-                builder.addConstructorArgReference(qualifiedBeanName);
-                builder.addDependsOn(qualifiedBeanName);
-            }
-
-            System.out.println(getBeanNameOf(component));
-            beanRegistry.registerBeanDefinition(getBeanNameOf(component), builder.getBeanDefinition());
-        }
+        for (Class<?> componentClass : useCaseClasses)
+            registerBean(beanRegistry, componentClass);
 
         log.info("{} Usecases have successfully registered into Spring Context", useCaseClasses.size());
     }
