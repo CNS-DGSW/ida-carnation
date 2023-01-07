@@ -9,6 +9,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
+import java.io.Serial;
+import java.io.Serializable;
+
 /**
  * Member 테이블의 정보들을 객체화한 Entity 클래스
  * @see com.dgsw.cns.global.domain.BaseIdEntity
@@ -19,7 +22,15 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @AllArgsConstructor @NoArgsConstructor
 @Table(indexes = @Index(name = "idx_email", columnList = "email"))
-public class MemberEntity extends BaseIdEntity<Long> {
+public class MemberEntity extends BaseIdEntity<Long> implements Serializable {
+
+    /**
+     * Fields in a "Serializable" class should either be transient or serializable
+     * @see com.dgsw.cns.user.domain.embedd.EmbeddedUserId
+     */
+    @Serial
+    private static final long serialVersionUID = 5811194024882600393L;
+
 
     @Column(nullable = false)
     private String email;
