@@ -15,6 +15,7 @@ dependencies {
     implementation project(":User-Domain")
     implementation project(":Applicant-Domain")
     implementation project(":School-Domain")
+    implementation project(":User-Spi")
 
     implementation api_implementations
     annotationProcessor api_annotations
