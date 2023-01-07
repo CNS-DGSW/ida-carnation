@@ -7,6 +7,10 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+/**
+ * UserPrivacyEntity 테이블의 정보들을 객체화한 Entity 클래스
+ * @see UserPrivacy
+ */
 @Getter
 @Entity
 @Builder

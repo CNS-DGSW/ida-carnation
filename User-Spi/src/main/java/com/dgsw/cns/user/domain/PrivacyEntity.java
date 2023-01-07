@@ -10,7 +10,10 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
-
+/**
+ * Privacy 테이블의 정보들을 객체화한 Entity 클래스
+ * @see Privacy
+ */
 @Getter
 @Entity
 @Builder

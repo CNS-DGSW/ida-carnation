@@ -6,6 +6,11 @@ import jakarta.persistence.Entity;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
+/**
+ * Address 테이블의 정보들을 객체화한 Entity 클래스
+ * @see BaseIdEntity
+ * @see Address
+ */
 @Getter
 @Entity
 @SuperBuilder

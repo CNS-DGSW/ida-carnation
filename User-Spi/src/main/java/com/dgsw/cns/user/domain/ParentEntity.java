@@ -10,6 +10,11 @@ import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
 
+/**
+ * Parent 테이블의 정보들을 객체화한 Entity 클래스
+ * @see com.dgsw.cns.global.domain.BaseIdEntity
+ * @see Parent
+ */
 @Getter
 @Entity
 @SuperBuilder
