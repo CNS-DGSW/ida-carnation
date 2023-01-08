@@ -10,6 +10,7 @@ import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.Optional;
 import java.util.Set;
 
 @Log4j2
@@ -26,13 +27,13 @@ public class ConfigLoader implements BeanFactoryPostProcessor {
                 original.substring(1));
     }
 
-    private String getQualifiedBeanName(DefaultListableBeanFactory beanFactory, Class<?> qualifiedType) {
+    private Optional<String> getQualifiedBeanName(DefaultListableBeanFactory beanFactory, Class<?> qualifiedType) {
         for(String beanName: beanFactory.getBeanDefinitionNames()) {
             if(beanFactory.isTypeMatch(beanName, qualifiedType))
-                return beanName;
+                return Optional.of(beanName);
         }
 
-        return null;
+        return Optional.empty();
     }
 
     private void registerBean(DefaultListableBeanFactory beanRegistry, Class<?> componentClass) {
@@ -40,11 +41,11 @@ public class ConfigLoader implements BeanFactoryPostProcessor {
         Class<?>[] params = componentClass.getConstructors()[0].getParameterTypes();
 
         for(Class<?> beanType: params) {
-            String qualifiedBeanName = getQualifiedBeanName(beanRegistry, beanType);
-            if(qualifiedBeanName == null) continue;
-
-            builder.addConstructorArgReference(qualifiedBeanName);
-            builder.addDependsOn(qualifiedBeanName);
+            getQualifiedBeanName(beanRegistry, beanType)
+                    .ifPresent(qualifiedBeanName -> {
+                        builder.addConstructorArgReference(qualifiedBeanName);
+                        builder.addDependsOn(qualifiedBeanName);
+                    });
         }
 
         beanRegistry.registerBeanDefinition(getBeanNameOf(componentClass),
