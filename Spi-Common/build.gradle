@@ -12,12 +12,8 @@ repositories {
 }
 
 dependencies {
-    implementation project(":User-Domain")
-    implementation project(":Spi-Common")
     implementation spi_implementations
-    runtimeOnly 'com.h2database:h2'
     annotationProcessor spi_annotations
-    testImplementation spi_test
 }
 
 test {
@@ -29,5 +25,5 @@ bootJar {
 }
 
 jar {
-    enabled = false
+    enabled = true
 }

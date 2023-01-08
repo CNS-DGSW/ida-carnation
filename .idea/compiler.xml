@@ -8,7 +8,9 @@
         <processorPath useClasspath="false">
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.20/18bcea7d5df4d49227b4a0743a536208ce4825bb/lombok-1.18.20.jar" />
         </processorPath>
+        <module name="IdaCarnation.Annotations.main" />
         <module name="IdaCarnation.Applicant-Spi.main" />
+        <module name="IdaCarnation.Spi-Common.main" />
         <module name="IdaCarnation.main" />
         <module name="IdaCarnation.School-Domain.main" />
         <module name="IdaCarnation.School-Spi.main" />
@@ -25,10 +27,6 @@
         <module name="IdaCarnation.Http-Api.main" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="17">
-      <module name="User-Spi" target="17" />
-      <module name="User-Spi.main" target="17" />
-      <module name="User-Spi.test" target="17" />
-    </bytecodeTargetLevel>
+    <bytecodeTargetLevel target="17" />
   </component>
 </project>

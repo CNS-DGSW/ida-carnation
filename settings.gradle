@@ -7,4 +7,5 @@ include 'Applicant-Spi'
 include 'School-Domain'
 include 'School-Spi'
 include 'Annotations'
+include 'Spi-Common'
 
