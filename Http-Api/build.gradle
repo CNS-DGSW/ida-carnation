@@ -12,15 +12,19 @@ repositories {
 }
 
 dependencies {
+    implementation project(":Annotations")
     implementation project(":User-Domain")
-    implementation project(":Applicant-Domain")
-    implementation project(":School-Domain")
     implementation project(":User-Spi")
+    implementation project(":Applicant-Domain")
+    implementation project(":Applicant-Spi")
+    implementation project(":School-Domain")
+    implementation project(":School-Spi")
 
     implementation api_implementations
     annotationProcessor api_annotations
     testImplementation api_test
 
+    implementation 'org.reflections:reflections:0.10.2'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }
