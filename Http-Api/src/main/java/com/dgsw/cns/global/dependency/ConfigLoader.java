@@ -47,7 +47,8 @@ public class ConfigLoader implements BeanFactoryPostProcessor {
             builder.addDependsOn(qualifiedBeanName);
         }
 
-        beanRegistry.registerBeanDefinition(getBeanNameOf(componentClass), builder.getBeanDefinition());
+        beanRegistry.registerBeanDefinition(getBeanNameOf(componentClass),
+                builder.getBeanDefinition());
     }
 
     @Override
@@ -58,6 +59,7 @@ public class ConfigLoader implements BeanFactoryPostProcessor {
         for (Class<?> componentClass : useCaseClasses)
             registerBean(beanRegistry, componentClass);
 
-        log.info("{} Usecases have successfully registered into Spring Context", useCaseClasses.size());
+        log.info("{} Usecases have successfully registered into Spring Context",
+                useCaseClasses.size());
     }
 }
