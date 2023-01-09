@@ -12,7 +12,7 @@ repositories {
 }
 
 dependencies {
-    implementation project(":Annotations")
+    implementation project(":Domain-Common")
     implementation project(":User-Domain")
     implementation project(":User-Spi")
     implementation project(":Applicant-Domain")
