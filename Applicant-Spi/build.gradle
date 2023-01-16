@@ -12,6 +12,8 @@ repositories {
 }
 
 dependencies {
+    implementation project(":Applicant-Domain")
+
     implementation spi_implementations
     annotationProcessor spi_annotations
     testImplementation spi_test
