@@ -20,6 +20,6 @@ public class InterviewEntity {
     @JoinColumn(referencedColumnName = "userId")
     private ApplicantInfoEntity applicantInfo;
 
-    private Long assignedTeamNumber;
+    private Integer assignedTeam;
     private Boolean isAttended;
 }

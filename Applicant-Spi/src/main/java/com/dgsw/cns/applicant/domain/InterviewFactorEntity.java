@@ -14,9 +14,15 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class InterviewFactor {
+public class InterviewFactorEntity {
     @Id
     private InterviewFactorId id;
+
+    @MapsId("userId")
+    private Long userId;
+
+    @MapsId("factorNumber")
+    private Integer factorNumber;
 
     private Integer score;
 

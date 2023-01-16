@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Getter
 @Builder
 @AllArgsConstructor
-public class ApplicantStatus {
+public class ApplicationStatus {
     private final Boolean isSubmitted;
     private final Boolean isPostArrived;
     private final Boolean isReviewing;
