@@ -10,6 +10,11 @@ import com.dgsw.cns.user.vo.certification.TokenVO;
  */
 public interface TokenRefreshApi {
 
+    /**
+     * 리프레시 토큰을 사용하여, 새로운 토큰을 발급받습니다.
+     * @param refreshTokenVO 리프레시 토큰
+     * @return 새로 발급된 토큰
+     */
     TokenVO tokenRefresh(RefreshTokenVO refreshTokenVO);
 
 }

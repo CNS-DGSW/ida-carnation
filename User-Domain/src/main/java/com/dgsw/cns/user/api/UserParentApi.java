@@ -8,8 +8,17 @@ import com.dgsw.cns.user.vo.MemberParentVO;
  */
 public interface UserParentApi {
 
+    /**
+     * 지원생의 부모 정보를 조회합니다.
+     * @param userId 지원생 식별키(PK)
+     * @return 부모 정보를 반환합니다.
+     */
     MemberParentVO getParentInfo(Long userId);
 
+    /**
+     * 지원생의 부모 정보를 수정 및 저장합니다.
+     * @param memberParentVO 부모 정보
+     */
     void modifyParentInfo(MemberParentVO memberParentVO);
 
 }
