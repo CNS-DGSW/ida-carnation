@@ -3,6 +3,12 @@ package com.dgsw.cns.user.vo.school;
 import com.dgsw.cns.user.vo.school.advanced.TeacherVO;
 import lombok.Getter;
 
+/**
+ * 지원자의 상태가 졸업 예정인 것을 구현한 자식 클래스
+ *
+ * @see SchoolInfo
+ * @see com.dgsw.cns.user.vo.MemberSchoolInfoRO
+ */
 @Getter
 public class UngraduatedInfoVO extends SchoolInfo {
 

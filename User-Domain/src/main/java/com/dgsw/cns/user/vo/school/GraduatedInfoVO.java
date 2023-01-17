@@ -6,6 +6,9 @@ import lombok.Getter;
 @Getter
 public class GraduatedInfoVO extends SchoolInfo {
 
+    /**
+     * 졸업한 년도
+     */
     private final YearVO graduated;
 
     public GraduatedInfoVO(String code, String region, String city, String telephone,

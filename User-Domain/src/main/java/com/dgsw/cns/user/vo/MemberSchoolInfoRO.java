@@ -15,6 +15,11 @@ import lombok.ToString;
 @AllArgsConstructor
 public abstract class MemberSchoolInfoRO {
 
+    /**
+     * 지원자의 상태(졸업예정/졸업/검정고시)를 반환합니다.
+     * @return 구현체의 타입을 반환합니다.
+     * @see Type
+     */
     public abstract Type getType();
 
     protected enum Type {
