@@ -20,6 +20,7 @@ dependencies {
     implementation project(":School-Domain")
     implementation project(":School-Spi")
 
+    implementation jwt_implementations
     implementation api_implementations
     annotationProcessor api_annotations
     testImplementation api_test
