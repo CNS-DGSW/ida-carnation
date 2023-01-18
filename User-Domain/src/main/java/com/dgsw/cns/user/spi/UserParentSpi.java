@@ -1,5 +1,7 @@
 package com.dgsw.cns.user.spi;
 
+import com.dgsw.cns.user.domain.Address;
+import com.dgsw.cns.user.domain.Parent;
 import com.dgsw.cns.user.vo.MemberParentVO;
 
 /**
@@ -10,9 +12,10 @@ public interface UserParentSpi {
     /**
      * 지원생의 부모 정보를 수정 및 저장합니다.
      * @param id 지원생 식별키(PK)
-     * @param memberParentVO 지원생의 부모 정보
+     * @param parent 지원생 부모 정보
+     * @param address 지원생 주소
      */
-    void modifyParentInfo(final long id, final MemberParentVO memberParentVO);
+    void modifyParentInfo(final long id, final Parent parent, final Address address);
 
     /**
      * 지원생의 부모 정보를 조회합니다.

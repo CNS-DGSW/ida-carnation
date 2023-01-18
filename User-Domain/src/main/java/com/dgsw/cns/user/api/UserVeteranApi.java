@@ -19,8 +19,9 @@ public interface UserVeteranApi {
     /**
      * 지원생에게 국가 보훈 번호와 보훈처를 작성합니다. <br>
      * 국가 보훈 번호는 반드시 양식에 맞게 작성되어야합니다.
+     * @param userId 지원생 식별키(PK)
      * @param memberVeteranVO 국가 보훈 번호와 보훈처
      */
-    void putVeteranInfo(MemberVeteranVO memberVeteranVO);
+    void putVeteranInfo(Long userId, MemberVeteranVO memberVeteranVO);
 
 }

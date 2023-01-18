@@ -17,8 +17,9 @@ public interface UserParentApi {
 
     /**
      * 지원생의 부모 정보를 수정 및 저장합니다.
+     * @param userId 지원생 식별키(PK)
      * @param memberParentVO 부모 정보
      */
-    void modifyParentInfo(MemberParentVO memberParentVO);
+    void modifyParentInfo(Long userId, MemberParentVO memberParentVO);
 
 }
