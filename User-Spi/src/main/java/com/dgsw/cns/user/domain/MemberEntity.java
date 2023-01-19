@@ -26,7 +26,7 @@ public class MemberEntity extends BaseIdEntity<Long> implements Serializable {
 
     /**
      * Fields in a "Serializable" class should either be transient or serializable
-     * @see com.dgsw.cns.user.domain.embedd.EmbeddedUserId
+     * @see com.dgsw.cns.user.domain.embedded.EmbeddedUserId
      */
     @Serial
     private static final long serialVersionUID = 5811194024882600393L;
@@ -45,5 +45,14 @@ public class MemberEntity extends BaseIdEntity<Long> implements Serializable {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Role role = Role.STUDENT;
+
+    @OneToOne(mappedBy = "member", orphanRemoval = true)
+    private AddressEntity address;
+
+    @OneToOne(mappedBy = "member", orphanRemoval = true)
+    private ParentEntity parent;
+
+    @OneToOne(mappedBy = "member", orphanRemoval = true)
+    private PrivacyEntity privacy;
 
 }

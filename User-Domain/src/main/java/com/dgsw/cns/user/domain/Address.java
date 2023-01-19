@@ -8,6 +8,7 @@ import lombok.Getter;
 public class Address {
 
     private final Long id;
+    private final Long userId;              // related on Member
     private final String detailAddress;
     private final String streetAddress;
     private final short zipCode;

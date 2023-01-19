@@ -10,6 +10,7 @@ import java.time.LocalDate;
 public class Parent {
 
     private final Long id;
+    private final Long userId;          // related on Member
     private final LocalDate birth;
     private final String contact;
     private final String name;

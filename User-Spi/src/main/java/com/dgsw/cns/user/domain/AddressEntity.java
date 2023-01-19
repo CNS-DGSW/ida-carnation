@@ -3,6 +3,7 @@ package com.dgsw.cns.user.domain;
 import com.dgsw.cns.global.domain.BaseIdEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToOne;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -25,5 +26,8 @@ public class AddressEntity extends BaseIdEntity<Long> {
 
     @Column(nullable = false)
     private short zipCode;
+
+    @OneToOne
+    private MemberEntity member;
 
 }

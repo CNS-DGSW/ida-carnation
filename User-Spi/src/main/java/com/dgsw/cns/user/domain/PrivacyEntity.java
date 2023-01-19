@@ -1,12 +1,9 @@
 package com.dgsw.cns.user.domain;
 
-import com.dgsw.cns.user.domain.embedd.EmbeddedUserId;
+import com.dgsw.cns.user.domain.embedded.EmbeddedUserId;
 import com.dgsw.cns.user.domain.enums.Gender;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 
@@ -21,7 +18,13 @@ import java.time.LocalDate;
 public class PrivacyEntity {
 
     @EmbeddedId
-    private EmbeddedUserId userId;
+    private EmbeddedUserId memberId;
+
+    @OneToOne
+    @MapsId("member_id")
+    @JoinColumn(name = "member_id")
+    @ToString.Exclude
+    private MemberEntity member;
 
     @Column(nullable = false)
     private LocalDate birth;

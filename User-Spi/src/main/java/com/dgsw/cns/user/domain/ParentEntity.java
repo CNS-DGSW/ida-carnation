@@ -3,6 +3,7 @@ package com.dgsw.cns.user.domain;
 import com.dgsw.cns.global.domain.BaseIdEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,5 +33,8 @@ public class ParentEntity extends BaseIdEntity<Long> {
 
     @Column(length = 16, nullable = false)
     private String relation;
+
+    @OneToOne
+    private MemberEntity member;
 
 }
