@@ -23,7 +23,8 @@ public interface EmailCertificationSpi {
     /**
      * 이메일로 인증코드(6자리)를 전송합니다.
      * @param email 코드를 전달할 이메일
+     * @param code 난수 인증 코드
      */
-    void sendCertificationCode(final String email);
+    void sendCertificationCode(final String email, Object code);
 
 }

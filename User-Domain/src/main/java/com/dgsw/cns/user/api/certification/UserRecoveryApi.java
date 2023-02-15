@@ -23,4 +23,10 @@ public interface UserRecoveryApi {
      */
     void resetPassword(MemberRecoveryPasswordVO memberRecoveryPasswordVO);
 
+    /**
+     * 회원 이메일로 난수 코드를 전송합니다.
+     * @param email 회원 이메일
+     */
+    void sendVerificationCode(String email);
+
 }
