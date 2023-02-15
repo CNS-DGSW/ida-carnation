@@ -3,6 +3,7 @@ package com.dgsw.cns.user.usecase;
 import com.dgsw.cns.annotations.UseCase;
 import com.dgsw.cns.user.api.UserRegistrationApi;
 import com.dgsw.cns.user.spi.UserRegistrationSpi;
+import com.dgsw.cns.user.spi.certification.email.EmailCertificationSpi;
 import com.dgsw.cns.user.spi.query.QueryUserSpi;
 import com.dgsw.cns.user.vo.MemberRegistrationVO;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 public class UserRegistrationUseCase implements UserRegistrationApi {
 
     private final UserRegistrationSpi userRegistrationSpi;
+    private final EmailCertificationSpi emailCertificationSpi;
     private final QueryUserSpi queryUserSpi;
 
     @Override
@@ -21,7 +23,7 @@ public class UserRegistrationUseCase implements UserRegistrationApi {
             throw new RuntimeException("이메일이 이미 존재합니다.");
         }
 
-        if(userRegistrationSpi.matches(memberRegistrationVO.getVerificationCode())){
+        if(emailCertificationSpi.matches(memberRegistrationVO.getVerificationCode())){
             throw new RuntimeException("인증번호가 일치하지 않습니다.");
         }
 

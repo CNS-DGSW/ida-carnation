@@ -20,6 +20,9 @@ import java.util.NoSuchElementException;
 @RequiredArgsConstructor
 public class UserRecoveryUseCase implements UserRecoveryApi {
 
+    // TODO: 2023-02-16 UserRecoveryApi 가 SRP 를 위배하는 상태임
+    // 하지만 이메일 인증은 회원 리커버리 파트 중 하나이기에 어찌보면 SRP 를 제대로 지킨 것일 수 도 있음
+
     private final QueryUserSpi queryUserSpi;
     private final EmailCertificationSpi emailCertificationSpi;
     private final RandomCodeSpi<Object> randomCodeSpi;
