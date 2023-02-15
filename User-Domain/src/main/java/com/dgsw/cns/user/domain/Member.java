@@ -11,7 +11,10 @@ public class Member {
     private final Long id;
     private final String email;
     private final String name;
-    private final String password;
+    private String password;
     private final Role role;
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }
