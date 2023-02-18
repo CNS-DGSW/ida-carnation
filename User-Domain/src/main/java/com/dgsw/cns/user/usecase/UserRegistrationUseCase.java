@@ -3,6 +3,7 @@ package com.dgsw.cns.user.usecase;
 import com.dgsw.cns.annotations.UseCase;
 import com.dgsw.cns.user.api.UserRegistrationApi;
 import com.dgsw.cns.user.spi.UserRegistrationSpi;
+import com.dgsw.cns.user.spi.certification.PasswordCertificationSpi;
 import com.dgsw.cns.user.spi.certification.email.EmailCertificationSpi;
 import com.dgsw.cns.user.spi.query.QueryUserSpi;
 import com.dgsw.cns.user.vo.MemberRegistrationVO;
@@ -13,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 public class UserRegistrationUseCase implements UserRegistrationApi {
 
     private final UserRegistrationSpi userRegistrationSpi;
+    private final PasswordCertificationSpi passwordCertificationSpi;
     private final EmailCertificationSpi emailCertificationSpi;
     private final QueryUserSpi queryUserSpi;
 
@@ -29,7 +31,7 @@ public class UserRegistrationUseCase implements UserRegistrationApi {
 
         userRegistrationSpi.register(
                 memberRegistrationVO.getEmail(),
-                userRegistrationSpi.encryptPassword(memberRegistrationVO.getPassword()),
+                passwordCertificationSpi.encryptPassword(memberRegistrationVO.getPassword()),
                 memberRegistrationVO.getVerificationCode()
         );
     }
