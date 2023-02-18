@@ -7,7 +7,7 @@ import com.dgsw.cns.user.spi.certification.email.EmailCertificationSpi;
  * 유저 회원가입을 진행하는 서비스 인터페이스
  * @see com.dgsw.cns.user.spi.certification.PasswordCertificationSpi
  */
-public interface UserRegistrationSpi extends PasswordCertificationSpi {
+public interface UserRegistrationSpi {
 
     /**
      * 이메일, 비밀번호, 이메일 인증 코드를 인자로 사용하여 회원가입을 진행합니다.

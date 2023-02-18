@@ -7,11 +7,11 @@ import com.dgsw.cns.user.vo.certification.TokenVO;
  * @see com.dgsw.cns.user.api.certification.UserLoginApi
  * @see PasswordCertificationSpi
  */
-public interface UserLoginCertificationSpi extends PasswordCertificationSpi {
+public interface UserLoginCertificationSpi {
 
     /**
      * 로그인을 진행하기 위한 이메일과 비밀번호를 받아
-     * 회원의 유효성 확인 및 {@link #checkValidation(String, String)} 를 사용하여 비밀번호의
+     * 회원의 유효성 확인 및 {@link PasswordCertificationSpi#checkValidation(String, String)} 를 사용하여 비밀번호의
      * 유효성을 확인한 후, JWT 토큰을 반환합니다.
      * @param email 회원의 이메일
      * @param rawPassword 회원의 암호화되지 않은 비밀번호
