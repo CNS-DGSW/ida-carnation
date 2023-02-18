@@ -1,4 +1,4 @@
-package com.dgsw.cns.user.api;
+package com.dgsw.cns.user.external;
 
 import com.dgsw.cns.user.spi.certification.email.EmailCertificationSpi;
 import org.junit.jupiter.api.Test;
