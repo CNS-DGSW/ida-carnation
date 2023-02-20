@@ -67,4 +67,12 @@ public class MemberParentVO {
                 .build();
     }
 
+    public static MemberParentVO fromDomain(Address address, Parent parent) {
+        final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        return new MemberParentVO(parent.getName(), parent.getRelation(),
+                formatter.format(parent.getBirth()), parent.getContact(),
+                address.getStreetAddress(), address.getDetailAddress(), address.getZipCode());
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.dgsw.cns.user.vo;
 
+import com.dgsw.cns.user.domain.Member;
 import com.dgsw.cns.user.domain.Privacy;
 import com.dgsw.cns.user.domain.enums.Gender;
 import lombok.Getter;
@@ -31,6 +32,13 @@ public class MemberInfoVO {
                 .gender(Gender.valueOf(gender.toUpperCase()))
                 .contact(telephone)
                 .build();
+    }
+
+    public static MemberInfoVO fromDomain(Member member, Privacy privacy) {
+        final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        return new MemberInfoVO(member.getName(), formatter.format(privacy.getBirth()),
+                privacy.getGender().name().toUpperCase(), privacy.getContact());
     }
 
 }

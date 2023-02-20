@@ -1,5 +1,6 @@
 package com.dgsw.cns.user.vo;
 
+import com.dgsw.cns.user.domain.Merit;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -20,4 +21,15 @@ public class MemberVeteranVO {
      */
     private final String id;
 
+    public Merit toDomain() {
+        return Merit.builder()
+                .code(id)
+                .department(department)
+                .build();
+    }
+
+
+    public static MemberVeteranVO fromDomain(Merit merit) {
+        return new MemberVeteranVO(merit.getDepartment(), merit.getCode());
+    }
 }
