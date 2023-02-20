@@ -28,7 +28,7 @@ public class EmailRegexTest {
         // when
         boolean result = SPI.validationEmail(sample);
 
-        // verify
+        // then
         assertTrue(result);
     }
 
@@ -40,7 +40,7 @@ public class EmailRegexTest {
         // when
         boolean result = SPI.validationEmail(sample);
 
-        // verify
+        // then
         assertTrue(result);
     }
 
@@ -52,7 +52,7 @@ public class EmailRegexTest {
         // when
         boolean result = SPI.validationEmail(sample);
 
-        // verify
+        // then
         assertTrue(result);
     }
 
@@ -64,7 +64,7 @@ public class EmailRegexTest {
         // when
         boolean result = SPI.validationEmail(sample);
 
-        // verify
+        // then
         assertTrue(result);
     }
 
@@ -76,7 +76,7 @@ public class EmailRegexTest {
         // when
         boolean result = SPI.validationEmail(sample);
 
-        // verify
+        // then
         assertTrue(result);
     }
 
@@ -88,7 +88,7 @@ public class EmailRegexTest {
         // when
         boolean result = SPI.validationEmail(sample);
 
-        // verify
+        // then
         assertTrue(result);
     }
 
@@ -100,7 +100,7 @@ public class EmailRegexTest {
         // when
         boolean result = SPI.validationEmail(sample);
 
-        // verify
+        // then
         assertTrue(result);
     }
 
@@ -112,7 +112,7 @@ public class EmailRegexTest {
         // when
         boolean result = SPI.validationEmail(sample);
 
-        // verify
+        // then
         assertFalse(result);
     }
 
