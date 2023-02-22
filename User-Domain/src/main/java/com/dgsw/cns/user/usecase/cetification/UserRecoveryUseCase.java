@@ -59,10 +59,6 @@ public class UserRecoveryUseCase implements UserRecoveryApi {
 
     @Override
     public void sendVerificationCode(String email) {
-        if (!emailCertificationSpi.validationEmail(email)) {
-            throw new IllegalArgumentException("이메일 형식이 올바르지 않습니다.");
-        }
-
         final Object code = randomCodeSpi.createRandomCode();
         randomCodeSpi.saveRandomCode(code);
         emailCertificationSpi.sendCertificationCode(email, code);

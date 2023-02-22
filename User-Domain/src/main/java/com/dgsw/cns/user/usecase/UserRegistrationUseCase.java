@@ -2,6 +2,7 @@ package com.dgsw.cns.user.usecase;
 
 import com.dgsw.cns.annotations.UseCase;
 import com.dgsw.cns.user.api.UserRegistrationApi;
+import com.dgsw.cns.user.domain.Member;
 import com.dgsw.cns.user.spi.UserRegistrationSpi;
 import com.dgsw.cns.user.spi.certification.PasswordCertificationSpi;
 import com.dgsw.cns.user.spi.certification.email.EmailCertificationSpi;
@@ -22,11 +23,11 @@ public class UserRegistrationUseCase implements UserRegistrationApi {
     public void registerUser(MemberRegistrationVO memberRegistrationVO) {
         // 이미 이메일 인증은 한 후, 회원가입이 이루어짐
         if (queryUserSpi.existsUserByEmail(memberRegistrationVO.getEmail())) {
-            throw new RuntimeException("이메일이 이미 존재합니다.");
+            throw new Member.EmailAlreadyExistsException();
         }
 
         if(emailCertificationSpi.matches(memberRegistrationVO.getVerificationCode())){
-            throw new RuntimeException("인증번호가 일치하지 않습니다.");
+            throw new Member.CertificationCodeMismatchException();
         }
 
         userRegistrationSpi.register(
