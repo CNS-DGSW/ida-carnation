@@ -1,119 +1,130 @@
 package com.dgsw.cns.user.external;
 
-import com.dgsw.cns.user.spi.certification.email.EmailCertificationSpi;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
+import jakarta.validation.ValidatorFactory;
+import jakarta.validation.constraints.Email;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import java.util.Set;
 
-public class EmailRegexTest {
+import static org.assertj.core.api.Assertions.assertThat;
 
-    private static final EmailCertificationSpi SPI = new EmailCertificationSpi() {
-        @Override
-        public boolean matches(String code) {
-            return false;
+class EmailRegexTest {
+
+    private Validator validator;
+
+    @BeforeEach
+    void setUp() {
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        validator = factory.getValidator();
+    }
+
+    static class Data {
+        @Email(regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
+        private final String email;
+
+        public Data(String email) {
+            this.email = email;
         }
-
-        @Override
-        public void sendCertificationCode(String email, Object code) {
-
-        }
-    };
+    }
 
     @Test
     void gmailTest() {
         // given
-        final String sample = "1@gmail.com";
+        final Data data = new Data("1@gmail.com");
 
         // when
-        boolean result = SPI.validationEmail(sample);
+        Set<ConstraintViolation<Data>> violations = validator.validate(data);
 
         // then
-        assertTrue(result);
+        assertThat(violations.size()).isEqualTo(0);
     }
 
     @Test
     void naverTest() {
         // given
-        final String sample = "1@naver.com";
+        final Data data = new Data("1@naver.com");
 
         // when
-        boolean result = SPI.validationEmail(sample);
+        Set<ConstraintViolation<Data>> violations = validator.validate(data);
 
         // then
-        assertTrue(result);
+        assertThat(violations.size()).isEqualTo(0);
     }
 
     @Test
     void daumTest() {
         // given
-        final String sample = "1@daum.com";
+        final Data data = new Data("1@daum.com");
 
         // when
-        boolean result = SPI.validationEmail(sample);
+        Set<ConstraintViolation<Data>> violations = validator.validate(data);
 
         // then
-        assertTrue(result);
+        assertThat(violations.size()).isEqualTo(0);
     }
 
     @Test
     void yahooTest() {
         // given
-        final String sample = "1@yahoo.com";
+        final Data data = new Data("1@yahoo.com");
 
         // when
-        boolean result = SPI.validationEmail(sample);
+        Set<ConstraintViolation<Data>> violations = validator.validate(data);
 
         // then
-        assertTrue(result);
+        assertThat(violations.size()).isEqualTo(0);
     }
 
     @Test
     void nateTest() {
         // given
-        final String sample = "1@nate.com";
+        final Data data = new Data("1@nate.com");
 
         // when
-        boolean result = SPI.validationEmail(sample);
+        Set<ConstraintViolation<Data>> violations = validator.validate(data);
 
         // then
-        assertTrue(result);
+        assertThat(violations.size()).isEqualTo(0);
     }
 
     @Test
     void koreaTest() {
         // given
-        final String sample = "1@korea.com";
+        final Data data = new Data("1@korea.com");
 
         // when
-        boolean result = SPI.validationEmail(sample);
+        Set<ConstraintViolation<Data>> violations = validator.validate(data);
 
         // then
-        assertTrue(result);
+        assertThat(violations.size()).isEqualTo(0);
     }
 
     @Test
     void dgswTest() {
         // given
-        final String sample = "1@dgsw.hs.kr";
+        final Data data = new Data("1@dgsw.hs.kr");
 
         // when
-        boolean result = SPI.validationEmail(sample);
+        Set<ConstraintViolation<Data>> violations = validator.validate(data);
 
         // then
-        assertTrue(result);
+        assertThat(violations.size()).isEqualTo(0);
     }
 
     @Test
     void failTest() {
         // given
-        final String sample = "1#naver.com";
+        final Data data = new Data("1#naver.com");
 
         // when
-        boolean result = SPI.validationEmail(sample);
+        Set<ConstraintViolation<Data>> violations = validator.validate(data);
 
         // then
-        assertFalse(result);
+        assertThat(violations.size()).isEqualTo(1);
     }
 
 }
