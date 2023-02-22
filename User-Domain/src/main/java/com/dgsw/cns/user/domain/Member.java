@@ -39,4 +39,58 @@ public class Member {
         }
     }
 
+    public static final class EmailAlreadyExistsException extends BusinessException {
+        @Serial
+        private static final long serialVersionUID = 5337685738358478423L;
+
+        public EmailAlreadyExistsException() {
+            super(409, "이미 사용 중인 이메일입니디.");
+        }
+
+        public EmailAlreadyExistsException(int code, String message) {
+            super(code, message);
+        }
+
+        public EmailAlreadyExistsException(String message, Throwable cause) {
+            super(409, message);
+            super.initCause(cause);
+        }
+    }
+
+    public static final class PasswordMismatchException extends BusinessException {
+        @Serial
+        private static final long serialVersionUID = 1058051660673119800L;
+
+        public PasswordMismatchException() {
+            super(401, "비밀번호가 일치하지 않습니다.");
+        }
+
+        public PasswordMismatchException(int code, String message) {
+            super(code, message);
+        }
+
+        public PasswordMismatchException(String message, Throwable cause) {
+            super(401, message);
+            super.initCause(cause);
+        }
+    }
+
+    public static final class CertificationCodeMismatchException
+            extends BusinessException {
+        @Serial
+        private static final long serialVersionUID = 3141750005630367740L;
+
+        public CertificationCodeMismatchException() {
+            super(401, "인증코드가 일치하지 않습니다.");
+        }
+
+        public CertificationCodeMismatchException(int code, String message) {
+            super(code, message);
+        }
+
+        public CertificationCodeMismatchException(String message, Throwable cause) {
+            super(401, message);
+            super.initCause(cause);
+        }
+    }
 }
