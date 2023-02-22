@@ -14,14 +14,11 @@ import lombok.RequiredArgsConstructor;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.NoSuchElementException;
+import java.time.ZoneId;
 
 @UseCase
 @RequiredArgsConstructor
 public class UserRecoveryUseCase implements UserRecoveryApi {
-
-    // TODO: 2023-02-16 UserRecoveryApi 가 SRP 를 위배하는 상태임
-    // 하지만 이메일 인증은 회원 리커버리 파트 중 하나이기에 어찌보면 SRP 를 제대로 지킨 것일 수 도 있음
 
     private final QueryUserSpi queryUserSpi;
     private final EmailCertificationSpi emailCertificationSpi;
@@ -48,11 +45,11 @@ public class UserRecoveryUseCase implements UserRecoveryApi {
         final String code = memberRecoveryPasswordVO.getVerificationCode();
 
         if (!emailCertificationSpi.matches(code)) {
-            throw new IllegalStateException("인증코드와 일치하지 않습니다.");
+            throw new Member.CertificationCodeMismatchException();
         }
 
         Member member = queryUserSpi.findUserByEmail(email)
-                .orElseThrow(() -> new NoSuchElementException("존재하지 않는 회원입니다."));
+                .orElseThrow(Member.MemberNotFoundException::new);
         member.setPassword(password);
         queryUserSpi.saveUser(member);
     }
@@ -66,6 +63,7 @@ public class UserRecoveryUseCase implements UserRecoveryApi {
 
     protected LocalDate stringToLocalDate(String data) throws ParseException {
         final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        return LocalDate.from(dateFormat.parse(data).toInstant());
+        return LocalDate.from(dateFormat.parse(data).toInstant()
+                .atZone(ZoneId.of("Asia/Seoul")).toLocalDate());
     }
 }
