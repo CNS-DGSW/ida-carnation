@@ -1,6 +1,7 @@
 package com.dgsw.cns.user.external;
 
 import com.dgsw.cns.user.vo.MemberRegistrationVO;
+import com.dgsw.cns.user.vo.MemberVeteranVO;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
@@ -139,4 +140,96 @@ public class RegexTest {
         // then
         assertThat(violations.size()).isEqualTo(1);
     }
+
+    @Test
+    @DisplayName("보훈청이 빈 문자열인 케이스")
+    void departmentIsEmptyTest() {
+        // given
+        final MemberVeteranVO vo = new MemberVeteranVO("", "00-000000");
+
+        // when
+        Set<ConstraintViolation<MemberVeteranVO>> violations = validator.validate(vo);
+
+        // then
+        assertThat(violations.size()).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("보훈번호가 빈 문자열인 케이스")
+    void meritCodeIsEmptyTest() {
+        // given
+        final MemberVeteranVO vo = new MemberVeteranVO("어드민 보훈청", "");
+
+        // when
+        Set<ConstraintViolation<MemberVeteranVO>> violations = validator.validate(vo);
+
+        // then
+        assertThat(violations.size()).isEqualTo(2);     // size, pattern
+    }
+
+    @Test
+    @DisplayName("보훈번호가 9자리 미만인 케이스")
+    void meritCodeLengthIsTooShortTest() {
+        // given
+        final MemberVeteranVO vo = new MemberVeteranVO("어드민 보훈청", "1");
+
+        // when
+        Set<ConstraintViolation<MemberVeteranVO>> violations = validator.validate(vo);
+
+        // then
+        assertThat(violations.size()).isEqualTo(2);     // size, pattern
+    }
+
+    @Test
+    @DisplayName("보훈번호가 9자리 초과인 케이스")
+    void meritCodeLengthIsTooLongTest() {
+        // given
+        final MemberVeteranVO vo = new MemberVeteranVO("어드민 보훈청", "12-34567890");
+
+        // when
+        Set<ConstraintViolation<MemberVeteranVO>> violations = validator.validate(vo);
+
+        // then
+        assertThat(violations.size()).isEqualTo(2);     // size, pattern
+    }
+
+    @Test
+    @DisplayName("보훈번호의 규격을 어긴 케이스")
+    void meritCodeIsMismatchTest() {
+        // given
+        final MemberVeteranVO vo = new MemberVeteranVO("어드민 보훈청", "12345678");
+
+        // when
+        Set<ConstraintViolation<MemberVeteranVO>> violations = validator.validate(vo);
+
+        // then
+        assertThat(violations.size()).isEqualTo(2);     // size, pattern
+    }
+
+    @Test
+    @DisplayName("보훈번호가 숫자가 아닌 문자가 1개이상 포함된 케이스")
+    void meritCodeIsAllNumber() {
+        // given
+        final MemberVeteranVO vo = new MemberVeteranVO("어드민 보훈청", "ab-123456");
+
+        // when
+        Set<ConstraintViolation<MemberVeteranVO>> violations = validator.validate(vo);
+
+        // then
+        assertThat(violations.size()).isEqualTo(1);     // pattern
+    }
+
+    @Test
+    @DisplayName("보훈번호가 제대로 입력된 케이스")
+    void meritCodeIsCorrect() {
+        // given
+        final MemberVeteranVO vo = new MemberVeteranVO("어드민 보훈청", "12-345678");
+
+        // when
+        Set<ConstraintViolation<MemberVeteranVO>> violations = validator.validate(vo);
+
+        // then
+        assertThat(violations.size()).isEqualTo(0);
+    }
+
 }
