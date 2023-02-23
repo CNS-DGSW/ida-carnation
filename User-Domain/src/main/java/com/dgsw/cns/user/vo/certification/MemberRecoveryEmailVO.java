@@ -1,5 +1,7 @@
 package com.dgsw.cns.user.vo.certification;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -11,6 +13,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class MemberRecoveryEmailVO {
 
+    @NotNull
+    @Email(message = "이메일의 유효성과 일치하지 않습니다.",
+            regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
     private final String email;
 
 }

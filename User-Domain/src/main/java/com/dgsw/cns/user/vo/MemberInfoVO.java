@@ -3,6 +3,8 @@ package com.dgsw.cns.user.vo;
 import com.dgsw.cns.user.domain.Member;
 import com.dgsw.cns.user.domain.Privacy;
 import com.dgsw.cns.user.domain.enums.Gender;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -16,12 +18,18 @@ import java.time.format.DateTimeFormatter;
 @RequiredArgsConstructor
 public class MemberInfoVO {
 
+    @NotBlank
     private final String name;
 
+    @NotBlank
+    @Pattern(regexp = "(\\d{4})-(\\d{2})-(\\d{2})")
     private final String birth;
 
+    @NotBlank
     private final String gender;
 
+    @NotBlank
+    @Pattern(regexp = "010-(\\d{4})-(\\d{4})")
     private final String telephone;
 
     public Privacy toDomain() {

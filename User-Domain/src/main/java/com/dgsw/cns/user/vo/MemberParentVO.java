@@ -2,6 +2,8 @@ package com.dgsw.cns.user.vo;
 
 import com.dgsw.cns.user.domain.Address;
 import com.dgsw.cns.user.domain.Parent;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -24,18 +26,27 @@ import java.time.format.DateTimeFormatter;
 @RequiredArgsConstructor
 public class MemberParentVO {
 
+    @NotBlank
     private final String name;
 
+    @NotBlank
     private final String relationShip;
 
+    @NotBlank
+    @Pattern(regexp = "(\\d{4})-(\\d{2})-(\\d{2})")
     private final String birthday;
 
+    @NotBlank
+    @Pattern(regexp = "010-(\\d{4})-(\\d{4})")
     private final String telephone;
 
+    @NotBlank
     private final String address;
 
+    @NotBlank
     private final String addressDetail;
 
+    @NotBlank
     private final short zipCode;
 
     public Parent toParentDomain() {
