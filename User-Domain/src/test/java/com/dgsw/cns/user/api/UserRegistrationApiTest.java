@@ -18,7 +18,7 @@ import static org.mockito.BDDMockito.given;
 import static org.assertj.core.api.ThrowableAssert.ThrowingCallable;
 
 @ExtendWith(MockitoExtension.class)
-public class UserRegistrationApiTest {
+class UserRegistrationApiTest {
 
     @Mock
     private EmailCertificationSpi emailCertificationSpi;

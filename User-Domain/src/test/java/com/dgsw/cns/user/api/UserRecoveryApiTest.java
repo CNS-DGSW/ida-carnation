@@ -22,7 +22,7 @@ import static org.mockito.BDDMockito.given;
 import static org.assertj.core.api.ThrowableAssert.ThrowingCallable;
 
 @ExtendWith(MockitoExtension.class)
-public class UserRecoveryApiTest {
+class UserRecoveryApiTest {
 
     @Mock
     private QueryUserSpi queryUserSpi;

@@ -26,7 +26,7 @@ import static org.assertj.core.api.ThrowableAssert.ThrowingCallable;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
-public class UserParentApiTest {
+class UserParentApiTest {
 
     @Mock
     private QueryUserSpi queryUserSpi;

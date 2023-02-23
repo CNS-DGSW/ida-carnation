@@ -14,7 +14,7 @@ import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class RegexTest {
+class RegexTest {
 
     private Validator validator;
 
@@ -34,7 +34,7 @@ public class RegexTest {
         Set<ConstraintViolation<MemberRegistrationVO>> violations = validator.validate(vo);
 
         // then
-        assertThat(violations.size()).isEqualTo(1);
+        assertThat(violations).hasSize(1);
     }
 
     @Test
@@ -47,7 +47,7 @@ public class RegexTest {
         Set<ConstraintViolation<MemberRegistrationVO>> violations = validator.validate(vo);
 
         // then
-        assertThat(violations.size()).isEqualTo(1);
+        assertThat(violations).hasSize(1);
     }
 
     @Test
@@ -60,7 +60,7 @@ public class RegexTest {
         Set<ConstraintViolation<MemberRegistrationVO>> violations = validator.validate(vo);
 
         // then
-        assertThat(violations.size()).isEqualTo(1);
+        assertThat(violations).hasSize(1);
     }
 
     @Test
@@ -73,7 +73,7 @@ public class RegexTest {
         Set<ConstraintViolation<MemberRegistrationVO>> violations = validator.validate(vo);
 
         // then
-        assertThat(violations.size()).isEqualTo(1);
+        assertThat(violations).hasSize(1);
     }
 
     @Test
@@ -86,7 +86,7 @@ public class RegexTest {
         Set<ConstraintViolation<MemberRegistrationVO>> violations = validator.validate(vo);
 
         // then
-        assertThat(violations.size()).isEqualTo(1);
+        assertThat(violations).hasSize(1);
     }
 
     @Test
@@ -99,7 +99,7 @@ public class RegexTest {
         Set<ConstraintViolation<MemberRegistrationVO>> violations = validator.validate(vo);
 
         // then
-        assertThat(violations.size()).isEqualTo(1);
+        assertThat(violations).hasSize(1);
     }
 
     @Test
@@ -112,7 +112,7 @@ public class RegexTest {
         Set<ConstraintViolation<MemberRegistrationVO>> violations = validator.validate(vo);
 
         // then
-        assertThat(violations.size()).isEqualTo(1);
+        assertThat(violations).hasSize(1);
     }
 
     @Test
@@ -125,7 +125,7 @@ public class RegexTest {
         Set<ConstraintViolation<MemberRegistrationVO>> violations = validator.validate(vo);
 
         // then
-        assertThat(violations.size()).isEqualTo(1);
+        assertThat(violations).hasSize(1);
     }
 
     @Test
@@ -138,7 +138,7 @@ public class RegexTest {
         Set<ConstraintViolation<MemberRegistrationVO>> violations = validator.validate(vo);
 
         // then
-        assertThat(violations.size()).isEqualTo(1);
+        assertThat(violations).hasSize(1);
     }
 
     @Test
@@ -151,7 +151,7 @@ public class RegexTest {
         Set<ConstraintViolation<MemberVeteranVO>> violations = validator.validate(vo);
 
         // then
-        assertThat(violations.size()).isEqualTo(1);
+        assertThat(violations).hasSize(1);
     }
 
     @Test
@@ -164,7 +164,7 @@ public class RegexTest {
         Set<ConstraintViolation<MemberVeteranVO>> violations = validator.validate(vo);
 
         // then
-        assertThat(violations.size()).isEqualTo(2);     // size, pattern
+        assertThat(violations).hasSize(2);              // size, pattern
     }
 
     @Test
@@ -177,7 +177,7 @@ public class RegexTest {
         Set<ConstraintViolation<MemberVeteranVO>> violations = validator.validate(vo);
 
         // then
-        assertThat(violations.size()).isEqualTo(2);     // size, pattern
+        assertThat(violations).hasSize(2);              // size, pattern
     }
 
     @Test
@@ -190,7 +190,7 @@ public class RegexTest {
         Set<ConstraintViolation<MemberVeteranVO>> violations = validator.validate(vo);
 
         // then
-        assertThat(violations.size()).isEqualTo(2);     // size, pattern
+        assertThat(violations).hasSize(2);              // size, pattern
     }
 
     @Test
@@ -203,7 +203,7 @@ public class RegexTest {
         Set<ConstraintViolation<MemberVeteranVO>> violations = validator.validate(vo);
 
         // then
-        assertThat(violations.size()).isEqualTo(2);     // size, pattern
+        assertThat(violations).hasSize(2);              // size, pattern
     }
 
     @Test
@@ -216,7 +216,7 @@ public class RegexTest {
         Set<ConstraintViolation<MemberVeteranVO>> violations = validator.validate(vo);
 
         // then
-        assertThat(violations.size()).isEqualTo(1);     // pattern
+        assertThat(violations).hasSize(1);              // pattern
     }
 
     @Test
@@ -229,7 +229,7 @@ public class RegexTest {
         Set<ConstraintViolation<MemberVeteranVO>> violations = validator.validate(vo);
 
         // then
-        assertThat(violations.size()).isEqualTo(0);
+        assertThat(violations.size()).isZero();
     }
 
 }

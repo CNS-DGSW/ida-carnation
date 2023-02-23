@@ -16,7 +16,7 @@ import static org.mockito.BDDMockito.given;
 import static org.assertj.core.api.ThrowableAssert.ThrowingCallable;
 
 @ExtendWith(MockitoExtension.class)
-public class UserVeteranApiTest {
+class UserVeteranApiTest {
 
     @Mock
     private QueryUserSpi queryUserSpi;

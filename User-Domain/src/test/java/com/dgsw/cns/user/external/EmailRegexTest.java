@@ -7,6 +7,8 @@ import jakarta.validation.ValidatorFactory;
 import jakarta.validation.constraints.Email;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Set;
 
@@ -31,88 +33,18 @@ class EmailRegexTest {
         }
     }
 
-    @Test
-    void gmailTest() {
+    @ParameterizedTest
+    @ValueSource(strings = {"1@gmail.com", "1@naver.com", "1@daum.com", "1@yahoo.com",
+            "1@nate.com", "1@korea.com", "1@dgsw.hs.kr"})
+    void emailRegexTest(final String email) {
         // given
-        final Data data = new Data("1@gmail.com");
+        final Data data = new Data(email);
 
         // when
         Set<ConstraintViolation<Data>> violations = validator.validate(data);
 
         // then
-        assertThat(violations.size()).isEqualTo(0);
-    }
-
-    @Test
-    void naverTest() {
-        // given
-        final Data data = new Data("1@naver.com");
-
-        // when
-        Set<ConstraintViolation<Data>> violations = validator.validate(data);
-
-        // then
-        assertThat(violations.size()).isEqualTo(0);
-    }
-
-    @Test
-    void daumTest() {
-        // given
-        final Data data = new Data("1@daum.com");
-
-        // when
-        Set<ConstraintViolation<Data>> violations = validator.validate(data);
-
-        // then
-        assertThat(violations.size()).isEqualTo(0);
-    }
-
-    @Test
-    void yahooTest() {
-        // given
-        final Data data = new Data("1@yahoo.com");
-
-        // when
-        Set<ConstraintViolation<Data>> violations = validator.validate(data);
-
-        // then
-        assertThat(violations.size()).isEqualTo(0);
-    }
-
-    @Test
-    void nateTest() {
-        // given
-        final Data data = new Data("1@nate.com");
-
-        // when
-        Set<ConstraintViolation<Data>> violations = validator.validate(data);
-
-        // then
-        assertThat(violations.size()).isEqualTo(0);
-    }
-
-    @Test
-    void koreaTest() {
-        // given
-        final Data data = new Data("1@korea.com");
-
-        // when
-        Set<ConstraintViolation<Data>> violations = validator.validate(data);
-
-        // then
-        assertThat(violations.size()).isEqualTo(0);
-    }
-
-    @Test
-    void dgswTest() {
-        // given
-        final Data data = new Data("1@dgsw.hs.kr");
-
-        // when
-        Set<ConstraintViolation<Data>> violations = validator.validate(data);
-
-        // then
-        assertThat(violations.size()).isEqualTo(0);
+        assertThat(violations.size()).isZero();
     }
 
     @Test
@@ -124,7 +56,7 @@ class EmailRegexTest {
         Set<ConstraintViolation<Data>> violations = validator.validate(data);
 
         // then
-        assertThat(violations.size()).isEqualTo(1);
+        assertThat(violations).hasSize(1);
     }
 
 }
