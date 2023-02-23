@@ -10,12 +10,14 @@ buildscript {
 
         spi_implementations = ['org.springframework.boot:spring-boot-starter-data-jpa']
         spi_annotations = []
-        spi_test = ['org.springframework.boot:spring-boot-starter-test', 'org.glassfish:jakarta.el:5.0.0-M1']
+        spi_test = ['org.springframework.boot:spring-boot-starter-test']
 
         jwt_implementations = ['io.jsonwebtoken:jjwt-api:0.11.5', 'io.jsonwebtoken:jjwt-impl:0.11.5', 'io.jsonwebtoken:jjwt-jackson:0.11.5']
 
         usecase_implementations = ['org.hibernate.validator:hibernate-validator:8.0.0.Final']
-        usecase_test = ['org.assertj:assertj-core:3.24.2', 'org.hamcrest:hamcrest-library:2.2', 'org.mockito:mockito-core:3.11.2', 'org.mockito:mockito-junit-jupiter:3.11.2', 'org.glassfish:jakarta.el:5.0.0-M1']
+        usecase_test = ['org.assertj:assertj-core:3.24.2', 'org.hamcrest:hamcrest-library:2.2', 'org.mockito:mockito-core:3.11.2', 'org.mockito:mockito-junit-jupiter:3.11.2']
+
+        all_test = ['org.glassfish:jakarta.el:5.0.0-M1']
     }
 
 }
