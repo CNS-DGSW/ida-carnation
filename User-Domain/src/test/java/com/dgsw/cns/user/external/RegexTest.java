@@ -229,7 +229,7 @@ class RegexTest {
         Set<ConstraintViolation<MemberVeteranVO>> violations = validator.validate(vo);
 
         // then
-        assertThat(violations.size()).isZero();
+        assertThat(violations).isEmpty();
     }
 
 }

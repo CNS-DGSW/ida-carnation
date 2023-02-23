@@ -44,7 +44,7 @@ class EmailRegexTest {
         Set<ConstraintViolation<Data>> violations = validator.validate(data);
 
         // then
-        assertThat(violations.size()).isZero();
+        assertThat(violations).isEmpty();
     }
 
     @Test
