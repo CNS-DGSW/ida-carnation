@@ -59,14 +59,14 @@ class UserRecoveryApiTest {
     @DisplayName("이메일 인증코드가 동일하지않은 케이스")
     void codeIsMismatchTest() {
         // given
-        given(emailCertificationSpi.matches(anyString()))
-                .willThrow(Member.CertificationCodeMismatchException.class);
+        given(emailCertificationSpi.matchesVerificationCode(anyString()))
+                .willThrow(Member.VerificationCodeMismatchException.class);
 
         // then
         ThrowingCallable method = () -> recoveryUseCase.resetPassword(dummyPassword());
 
         // then
         assertThatThrownBy(method)
-                .isInstanceOf(Member.CertificationCodeMismatchException.class);
+                .isInstanceOf(Member.VerificationCodeMismatchException.class);
     }
 }

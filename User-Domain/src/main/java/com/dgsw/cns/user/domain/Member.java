@@ -75,20 +75,20 @@ public class Member {
         }
     }
 
-    public static final class CertificationCodeMismatchException
+    public static final class VerificationCodeMismatchException
             extends BusinessException {
         @Serial
         private static final long serialVersionUID = 3141750005630367740L;
 
-        public CertificationCodeMismatchException() {
+        public VerificationCodeMismatchException() {
             super(401, "인증코드가 일치하지 않습니다.");
         }
 
-        public CertificationCodeMismatchException(int code, String message) {
+        public VerificationCodeMismatchException(int code, String message) {
             super(code, message);
         }
 
-        public CertificationCodeMismatchException(String message, Throwable cause) {
+        public VerificationCodeMismatchException(String message, Throwable cause) {
             super(401, message);
             super.initCause(cause);
         }

@@ -44,8 +44,8 @@ public class UserRecoveryUseCase implements UserRecoveryApi {
         final String password = memberRecoveryPasswordVO.getNewPassword();
         final String code = memberRecoveryPasswordVO.getVerificationCode();
 
-        if (!emailCertificationSpi.matches(code)) {
-            throw new Member.CertificationCodeMismatchException();
+        if (!emailCertificationSpi.matchesVerificationCode(code)) {
+            throw new Member.VerificationCodeMismatchException();
         }
 
         Member member = queryUserSpi.findUserByEmail(email)

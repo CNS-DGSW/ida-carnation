@@ -62,14 +62,14 @@ class UserRegistrationApiTest {
         // given
         given(queryUserSpi.existsUserByEmail(anyString()))
                 .willReturn(false);
-        given(emailCertificationSpi.matches(anyString()))
-                .willThrow(Member.CertificationCodeMismatchException.class);
+        given(emailCertificationSpi.matchesVerificationCode(anyString()))
+                .willThrow(Member.VerificationCodeMismatchException.class);
 
         // when
         ThrowingCallable method = () -> registrationUseCase
                 .registerUser(dummyValueObject(anyString()));
 
         // then
-        assertThatThrownBy(method).isInstanceOf(Member.CertificationCodeMismatchException.class);
+        assertThatThrownBy(method).isInstanceOf(Member.VerificationCodeMismatchException.class);
     }
 }

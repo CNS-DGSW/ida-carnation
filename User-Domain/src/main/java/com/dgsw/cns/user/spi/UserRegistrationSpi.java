@@ -11,7 +11,7 @@ public interface UserRegistrationSpi {
 
     /**
      * 이메일, 비밀번호, 이메일 인증 코드를 인자로 사용하여 회원가입을 진행합니다.
-     * 이때, 이메일은 {@link EmailCertificationSpi#validationEmail(String)}를 통해
+     * 이때, 이메일은 {@link EmailCertificationSpi#matchesVerificationCode(String)}를 통해
      * 이메일 검증을 거챠야합니다.
      * Database 에 저장할 때에는 보안을 위해
      * {@link PasswordCertificationSpi#encryptPassword(String)}
@@ -20,7 +20,7 @@ public interface UserRegistrationSpi {
      * 최종적으로 회원가입이 완료됩니다.
      * <pre>
      * {@link EmailCertificationSpi#sendCertificationCode(String, Object)}
-     * {@link EmailCertificationSpi#matches(String)}
+     * {@link EmailCertificationSpi#matchesVerificationCode(String)}
      * </pre>
      *
      * @param email 가입할 이메일

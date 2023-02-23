@@ -10,7 +10,7 @@ public interface EmailCertificationSpi {
      * @param code 클라이언트 측 이메일 인증코드
      * @return 일치하다면 true, 아니라면 false
      */
-    boolean matches(final String code);
+    boolean matchesVerificationCode(final String code);
 
     /**
      * 이메일로 인증코드(6자리)를 전송합니다.
