@@ -26,7 +26,8 @@ public class UserRegistrationUseCase implements UserRegistrationApi {
             throw new Member.EmailAlreadyExistsException();
         }
 
-        if(emailCertificationSpi.matchesVerificationCode(memberRegistrationVO.getVerificationCode())){
+        if (emailCertificationSpi
+                .matchesVerificationCode(memberRegistrationVO.getVerificationCode())) {
             throw new Member.VerificationCodeMismatchException();
         }
 

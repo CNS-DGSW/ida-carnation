@@ -38,23 +38,19 @@ public class UserParentUseCase implements UserParentApi {
             throw new Member.MemberNotFoundException();
         }
 
-        final Parent newParent = memberParentVO.toParentDomain();
-        final Address newAddress = memberParentVO.toAddressDomain();
+        queryParentSpi.saveOrUpdate(getLatestParent(userId, memberParentVO.toParentDomain()));
+        queryAddressSpi.saveOrUpdate(getLatestAddress(userId, memberParentVO.toAddressDomain()));
+    }
 
-        // 데이터베이스에 존재한다면 조회, 없으면 VO를 사용하여 생성
-        Parent parent = queryParentSpi.findParentByMemberId(userId)
-                .orElse(memberParentVO.toParentDomain());
-        Address address = queryAddressSpi.findAddressByMemberId(userId)
-                .orElse(memberParentVO.toAddressDomain());
-        if (!parent.equals(newParent)) {
-            // 변경 감지
-            parent = newParent;
-        }
-        if (!address.equals(newAddress)) {
-            address = newAddress;
-        }
+    protected Parent getLatestParent(Long userId, Parent valueObject) {
+        Parent recentParent = queryParentSpi.findParentByMemberId(userId)
+                .orElse(valueObject);
+        return (recentParent.equals(valueObject)) ? recentParent : valueObject;
+    }
 
-        queryParentSpi.saveOrUpdate(parent);
-        queryAddressSpi.saveOrUpdate(address);
+    protected Address getLatestAddress(Long userId, Address valueObject) {
+        Address recentAddress = queryAddressSpi.findAddressByMemberId(userId)
+                .orElse(valueObject);
+        return (recentAddress.equals(valueObject)) ? recentAddress : valueObject;
     }
 }

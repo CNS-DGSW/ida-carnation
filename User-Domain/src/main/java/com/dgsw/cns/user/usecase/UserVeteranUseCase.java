@@ -38,29 +38,22 @@ public class UserVeteranUseCase implements UserVeteranApi {
             throw new Member.MemberNotFoundException();
         }
 
-        final Merit newMerit = memberVeteranVO.toDomain();
         final Privacy privacy = queryPrivacySpi.findPrivacyByMemberId(userId)
                 .orElseThrow(Privacy.PrivacyNotFoundException::new);
-        // privacy 없이는 보훈 번호를 입력할 수 없다.
+        final Merit latestMerit = getLatestMerit(privacy, memberVeteranVO.toDomain());
 
-        Merit merit;
-        if (privacy.getMeritCode() == null) {
-            // 보훈 번호가 입력된 적 없는 경우, 새로운 보훈 번호로 대입
-            merit = newMerit;
-        }
-        else {
-            // 보훈번호가 데이터베이스에 저장되어있던 경우 직접 조회. 존재하지 않는다면 가짜 보훈번호로 간주
-            merit = queryMeritSpi.findMeritByCode(privacy.getMeritCode())
-                    .orElseThrow(Merit.ForgeryMeritCodeException::new);
-            // 변경 감지
-            if (!merit.equals(newMerit)) {
-                // 서로 다르다면 새로운 보훈 번호로 대입
-                merit = newMerit;
-            }
-        }
-
-        privacy.updateMeritCode(merit.getCode());
-        queryMeritSpi.saveOrUpdate(merit);
+        privacy.updateMeritCode(latestMerit.getCode());
+        queryMeritSpi.saveOrUpdate(latestMerit);
         queryPrivacySpi.saveOrUpdate(privacy);
+    }
+
+    protected Merit getLatestMerit(Privacy privacy, Merit valueObject) {
+        if (privacy.isCodeNull()) {
+            return valueObject;
+        }
+
+        Merit recentMerit = queryMeritSpi.findMeritByCode(privacy.getMeritCode())
+                .orElseThrow(Merit.ForgeryMeritCodeException::new);
+        return (recentMerit.equals(valueObject)) ? recentMerit : valueObject;
     }
 }

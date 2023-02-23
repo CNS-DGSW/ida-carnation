@@ -27,6 +27,10 @@ public class Privacy {
         this.meritCode = meritCode;
     }
 
+    public boolean isCodeNull() {
+        return (meritCode == null);
+    }
+
     public static final class PrivacyNotFoundException extends BusinessException {
         @Serial
         private static final long serialVersionUID = 3846624041980964378L;
