@@ -1,5 +1,8 @@
 package com.dgsw.cns.util;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -7,11 +10,15 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 
+/**
+ * 날짜 변환 유틸 클래스 <br>
+ * 유틸 클래스이므로 생성자를 생성하지 못하도록 합니다.
+ * {@link NoArgsConstructor}
+ */
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class DateUtil {
 
     /** Don't let anyone instantiate this class. */
-    private DateUtil() {
-    }
 
     public LocalDate stringToLocalDate(String data) throws ParseException {
         final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
