@@ -1,6 +1,6 @@
 package com.dgsw.cns.user.domain;
 
-import com.dgsw.cns.exception.BusinessException;
+import com.dgsw.cns.exception.client.NotFoundException;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -17,21 +17,24 @@ public class Address {
     private final String streetAddress;
     private final short zipCode;
 
-    public static final class AddressNotFoundException extends BusinessException {
+    public static final class AddressNotFoundException extends NotFoundException {
         @Serial
         private static final long serialVersionUID = -2811835751455258639L;
 
         public AddressNotFoundException() {
-            super(404, "주소가 존재하지 않습니다.");
+            super("주소가 존재하지 않습니다.");
         }
 
-        public AddressNotFoundException(int code, String message) {
-            super(code, message);
+        public AddressNotFoundException(String message) {
+            super(message);
         }
 
         public AddressNotFoundException(String message, Throwable cause) {
-            super(404, message);
-            super.initCause(cause);
+            super(message, cause);
+        }
+
+        public AddressNotFoundException(Throwable cause) {
+            super(cause);
         }
     }
 

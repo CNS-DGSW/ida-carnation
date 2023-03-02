@@ -11,6 +11,7 @@ repositories {
 
 dependencies {
     implementation project(":Domain-Common")
+    implementation project(":Date-Util")
     implementation usecase_implementations
 
     testImplementation usecase_test

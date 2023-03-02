@@ -1,6 +1,6 @@
 package com.dgsw.cns.user.domain;
 
-import com.dgsw.cns.exception.BusinessException;
+import com.dgsw.cns.exception.client.ConflictException;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -14,21 +14,24 @@ public class Merit {
     private final String code;
     private final String department;
 
-    public static final class ForgeryMeritCodeException extends BusinessException {
+    public static final class ForgeryMeritCodeException extends ConflictException {
         @Serial
         private static final long serialVersionUID = -7797890304000773116L;
 
         public ForgeryMeritCodeException() {
-            super(409, "저장되지않은 보훈 번호입니다.");
+            super("저장되지않은 보훈 번호입니다.");
         }
 
-        public ForgeryMeritCodeException(int code, String message) {
-            super(code, message);
+        public ForgeryMeritCodeException(String message) {
+            super(message);
         }
 
         public ForgeryMeritCodeException(String message, Throwable cause) {
-            super(409, message);
-            super.initCause(cause);
+            super(message, cause);
+        }
+
+        public ForgeryMeritCodeException(Throwable cause) {
+            super(cause);
         }
     }
 

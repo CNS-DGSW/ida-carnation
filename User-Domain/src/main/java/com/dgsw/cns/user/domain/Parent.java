@@ -1,6 +1,6 @@
 package com.dgsw.cns.user.domain;
 
-import com.dgsw.cns.exception.BusinessException;
+import com.dgsw.cns.exception.client.NotFoundException;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -19,21 +19,24 @@ public class Parent {
     private final String name;
     private final String relation;
 
-    public static final class ParentNotFoundException extends BusinessException {
+    public static final class ParentNotFoundException extends NotFoundException {
         @Serial
         private static final long serialVersionUID = -7270571150357608874L;
 
         public ParentNotFoundException() {
-            super(404, "부모 정보가 존재하지 않습니다.");
+            super("부모 정보가 존재하지 않습니다.");
         }
 
-        public ParentNotFoundException(int code, String message) {
-            super(code, message);
+        public ParentNotFoundException(String message) {
+            super(message);
         }
 
         public ParentNotFoundException(String message, Throwable cause) {
-            super(404, message);
-            super.initCause(cause);
+            super(message, cause);
+        }
+
+        public ParentNotFoundException(Throwable cause) {
+            super(cause);
         }
     }
 

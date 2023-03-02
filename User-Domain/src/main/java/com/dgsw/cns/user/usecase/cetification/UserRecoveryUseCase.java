@@ -9,12 +9,11 @@ import com.dgsw.cns.user.spi.query.QueryUserSpi;
 import com.dgsw.cns.user.vo.certification.MemberRecoveryEmailVO;
 import com.dgsw.cns.user.vo.certification.MemberRecoveryIdVO;
 import com.dgsw.cns.user.vo.certification.MemberRecoveryPasswordVO;
+import com.dgsw.cns.util.DateUtil;
 import lombok.RequiredArgsConstructor;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.ZoneId;
 
 @UseCase
 @RequiredArgsConstructor
@@ -29,7 +28,7 @@ public class UserRecoveryUseCase implements UserRecoveryApi {
         final String name = memberRecoveryIdVO.getName();
         final LocalDate birth;
         try {
-            birth = stringToLocalDate(memberRecoveryIdVO.getBirth());
+            birth = DateUtil.stringToLocalDate(memberRecoveryIdVO.getBirth());
         } catch (ParseException e) {
             throw new IllegalArgumentException(e);
         }
@@ -59,11 +58,5 @@ public class UserRecoveryUseCase implements UserRecoveryApi {
         final Object code = randomCodeSpi.createRandomCode();
         randomCodeSpi.saveRandomCode(code);
         emailCertificationSpi.sendCertificationCode(email, code);
-    }
-
-    protected LocalDate stringToLocalDate(String data) throws ParseException {
-        final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        return LocalDate.from(dateFormat.parse(data).toInstant()
-                .atZone(ZoneId.of("Asia/Seoul")).toLocalDate());
     }
 }

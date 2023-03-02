@@ -1,6 +1,6 @@
 package com.dgsw.cns.user.domain;
 
-import com.dgsw.cns.exception.BusinessException;
+import com.dgsw.cns.exception.client.NotFoundException;
 import com.dgsw.cns.user.domain.enums.Gender;
 import lombok.Builder;
 import lombok.Getter;
@@ -31,21 +31,24 @@ public class Privacy {
         return (meritCode == null);
     }
 
-    public static final class PrivacyNotFoundException extends BusinessException {
+    public static final class PrivacyNotFoundException extends NotFoundException {
         @Serial
         private static final long serialVersionUID = 3846624041980964378L;
 
         public PrivacyNotFoundException() {
-            super(404, "개인정보가 존재하지 않습니다.");
+            super("개인정보가 존재하지 않습니다.");
         }
 
-        public PrivacyNotFoundException(int code, String message) {
-            super(code, message);
+        public PrivacyNotFoundException(String message) {
+            super(message);
         }
 
         public PrivacyNotFoundException(String message, Throwable cause) {
-            super(404, message);
-            super.initCause(cause);
+            super(message, cause);
+        }
+
+        public PrivacyNotFoundException(Throwable cause) {
+            super(cause);
         }
     }
 
