@@ -33,10 +33,11 @@ public class PrivacyEntity {
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
-    @Column(length = 16)
+    @Column(nullable = false, length = 16)
     private String contact;
 
-    @Column(length = 10)
-    private String meritCode;
+    @OneToOne(cascade = CascadeType.MERGE, orphanRemoval = true)
+    @JoinColumn(name = "merit_code")
+    private MeritEntity meritEntity;
 
 }

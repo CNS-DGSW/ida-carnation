@@ -1,5 +1,7 @@
 package com.dgsw.cns.user.vo.certification;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -10,8 +12,10 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class MemberRecoveryIdVO {
 
+    @NotBlank
     private final String name;
 
+    @Pattern(regexp = "(\\d{4})-(\\d{2})-(\\d{2})")
     private final String birth;
 
 }
