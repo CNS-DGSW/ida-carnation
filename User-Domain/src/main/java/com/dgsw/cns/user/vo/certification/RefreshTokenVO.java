@@ -1,5 +1,6 @@
 package com.dgsw.cns.user.vo.certification;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -10,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class RefreshTokenVO {
 
+    @NotBlank
     private final String refreshToken;
 
 }
