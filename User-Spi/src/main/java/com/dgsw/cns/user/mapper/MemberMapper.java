@@ -20,7 +20,7 @@ public class MemberMapper implements Mapper<Member, MemberEntity> {
     }
 
     @Override
-    public Member entityToEntity(MemberEntity memberEntity) {
+    public Member entityToDomain(MemberEntity memberEntity) {
         return Member.builder()
                 .id(memberEntity.getId())
                 .email(memberEntity.getEmail())

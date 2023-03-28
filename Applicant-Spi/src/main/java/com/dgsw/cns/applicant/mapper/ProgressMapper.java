@@ -18,7 +18,7 @@ public class ProgressMapper implements Mapper<Progress, ProgressEntity> {
     }
 
     @Override
-    public Progress entityToEntity(ProgressEntity entity) {
+    public Progress entityToDomain(ProgressEntity entity) {
         return Progress.builder()
                 .applyType(entity.getApplyType())
                 .applyDetailType(entity.getApplyDetailType())

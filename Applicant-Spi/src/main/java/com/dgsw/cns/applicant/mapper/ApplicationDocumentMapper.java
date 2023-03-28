@@ -17,7 +17,7 @@ public class ApplicationDocumentMapper implements Mapper<ApplicationDocument, Ap
     }
 
     @Override
-    public ApplicationDocument entityToEntity(ApplicationDocumentEntity entity) {
+    public ApplicationDocument entityToDomain(ApplicationDocumentEntity entity) {
         return ApplicationDocument.builder()
                 .introduction(entity.getIntroduction())
                 .plan(entity.getPlan())
