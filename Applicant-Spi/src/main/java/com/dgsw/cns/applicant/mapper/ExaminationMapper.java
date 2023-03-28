@@ -18,7 +18,7 @@ public class ExaminationMapper implements Mapper<Examination, ExaminationEntity>
     }
 
     @Override
-    public Examination entityToEntity(ExaminationEntity entity) {
+    public Examination entityToDomain(ExaminationEntity entity) {
         return Examination.builder()
                 .aptitudeScore(entity.getAptitudeScore())
                 .codingTestScore(entity.getCodingTestScore())

@@ -24,7 +24,7 @@ public class InterviewMapper implements Mapper<Interview, InterviewEntity> {
     }
 
     @Override
-    public Interview entityToEntity(InterviewEntity entity) {
+    public Interview entityToDomain(InterviewEntity entity) {
         List<Integer> factors = interviewFactorRepository
                 .findAllByUserIdOrderByFactorNumberAsc(entity.getUserId())
                 .stream().map(InterviewFactorEntity::getScore)

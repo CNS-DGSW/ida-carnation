@@ -20,7 +20,7 @@ public class ParentMapper implements Mapper<Parent, ParentEntity> {
     }
 
     @Override
-    public Parent entityToEntity(ParentEntity parentEntity) {
+    public Parent entityToDomain(ParentEntity parentEntity) {
         return Parent.builder()
                 .id(parentEntity.getId())
                 .birth(parentEntity.getBirth())

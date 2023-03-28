@@ -19,7 +19,7 @@ public class ApplicationStatusMapper implements Mapper<ApplicationStatus, Applic
     }
 
     @Override
-    public ApplicationStatus entityToEntity(ApplicationStatusEntity entity) {
+    public ApplicationStatus entityToDomain(ApplicationStatusEntity entity) {
         return ApplicationStatus.builder()
                 .isPostArrived(entity.getIsPostArrived())
                 .isReviewing(entity.getIsReviewing())

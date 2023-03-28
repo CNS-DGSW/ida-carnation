@@ -19,7 +19,7 @@ public class AddressMapper implements Mapper<Address, AddressEntity> {
     }
 
     @Override
-    public Address entityToEntity(AddressEntity addressEntity) {
+    public Address entityToDomain(AddressEntity addressEntity) {
         return Address.builder()
                 .id(addressEntity.getId())
                 .detailAddress(addressEntity.getDetailAddress())
