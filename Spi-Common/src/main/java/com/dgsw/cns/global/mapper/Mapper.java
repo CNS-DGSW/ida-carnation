@@ -20,6 +20,6 @@ public interface Mapper<T, S> {
      * @param entity Entity 인스턴스를 인자로 받습니다.
      * @return Domain 클래스를 반환합니다.
      */
-    T entityToEntity(S entity);
+    T entityToDomain(S entity);
 
 }

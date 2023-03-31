@@ -26,7 +26,7 @@ public class PrivacyMapper implements Mapper<Privacy, PrivacyEntity> {
     }
 
     @Override
-    public Privacy entityToEntity(PrivacyEntity privacyEntity) {
+    public Privacy entityToDomain(PrivacyEntity privacyEntity) {
         return Privacy.builder()
                 .userId(privacyEntity.getMemberId().getMemberId())
                 .birth(privacyEntity.getBirth())

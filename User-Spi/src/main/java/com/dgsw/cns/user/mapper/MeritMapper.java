@@ -19,7 +19,7 @@ public class MeritMapper implements Mapper<Merit, MeritEntity> {
     }
 
     @Override
-    public Merit entityToEntity(MeritEntity entity) {
+    public Merit entityToDomain(MeritEntity entity) {
         return Merit.builder()
                 .code(entity.getMeritCode())
                 .department(entity.getDepartment())
